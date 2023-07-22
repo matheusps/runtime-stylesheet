@@ -1,1 +1,3 @@
-export const app = {};
+import { transformCss } from "./transform-css";
+
+export { transformCss };
