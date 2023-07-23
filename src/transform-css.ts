@@ -246,7 +246,10 @@ class Stylesheet {
 
     // Perform replacements backwards to simplify index handling
     for (let i = results.length - 1; i >= 0; i--) {
-      const [endIndex, [firstMatch]] = results[i];
+      const {
+        endIndex,
+        foundStrings: [firstMatch],
+      } = results[i];
       const startIndex = endIndex - firstMatch.length + 1;
 
       if (startIndex >= lastReplaceIndex) {

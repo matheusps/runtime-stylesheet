@@ -6,10 +6,15 @@ export class AhoCorasick {
   private failure: Record<number, any> = {};
 
   constructor(keywords: Array<string>) {
-    this.buildTables(keywords);
+    this.buildFsm(keywords);
   }
 
-  private buildTables(keywords: Array<string>) {
+  /**
+   * Creates the FSM (Finite State Machine) using the keywords
+   * @param keywords: Array of strings
+   * @link https://developer.mozilla.org/en-US/docs/Glossary/State_machine
+   */
+  private buildFsm(keywords: Array<string>) {
     let state = 0;
     const xs = []; // discover what this is
 
@@ -62,26 +67,34 @@ export class AhoCorasick {
     }
   }
 
-  public search(str: string) {
-    let state = 0;
-    const results = [];
+  public search(str: string): SearchReturn {
+    let currentState = 0;
+    const results: Array<SearchResult> = [];
+
     for (let i = 0; i < str.length; i++) {
       const l = str[i];
-      while (state > 0 && !(l in this.gotoFn[state])) {
-        state = this.failure[state];
+      while (currentState > 0 && !(l in this.gotoFn[currentState])) {
+        currentState = this.failure[currentState];
       }
-      if (!(l in this.gotoFn[state])) {
+      if (!(l in this.gotoFn[currentState])) {
         continue;
       }
 
-      state = this.gotoFn[state][l];
+      currentState = this.gotoFn[currentState][l];
 
-      if (this.output[state].length) {
-        const foundStrs = this.output[state];
-        results.push([i, foundStrs]);
+      if (this.output[currentState].length) {
+        const foundStrings = this.output[currentState];
+        results.push({ endIndex: i, foundStrings });
       }
     }
 
     return results;
   }
 }
+
+interface SearchResult {
+  endIndex: number;
+  foundStrings: Array<string>;
+}
+
+type SearchReturn = Array<SearchResult>;
