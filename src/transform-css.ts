@@ -10,10 +10,8 @@ import type {
   StyleWithSelectors,
   GlobalFontFaceRule,
   CSSSelectorBlock,
-  Composition,
   WithQueries,
 } from "./types";
-import { markCompositionUsed } from "./adapter";
 import { forEach, omit, mapKeys, getVarName } from "./utils";
 import { ConditionalRuleset } from "./conditional-rulesets";
 import { simplePseudos, simplePseudoLookup } from "./simple-pseudos";
@@ -64,13 +62,9 @@ class Stylesheet {
   keyframesRules: Array<CSSKeyframesBlock>;
   localClassNamesMap: Map<string, string>;
   localClassNamesSearch: AhoCorasick;
-  composedClassLists: Array<{ identifier: string; regex: RegExp }>;
   layers: Map<string, Array<string>>;
 
-  constructor(
-    localClassNames: Array<string>,
-    composedClassLists: Array<Composition>
-  ) {
+  constructor(localClassNames: Array<string>) {
     this.rules = [];
     this.conditionalRulesets = [new ConditionalRuleset()];
     this.fontFaceRules = [];
@@ -80,15 +74,6 @@ class Stylesheet {
     );
     this.localClassNamesSearch = new AhoCorasick(localClassNames);
     this.layers = new Map();
-
-    // Class list compositions should be priortized by Newer > Older
-    // Therefore we reverse the array as they are added in sequence
-    this.composedClassLists = composedClassLists
-      .map(({ identifier, classList }) => ({
-        identifier,
-        regex: RegExp(`(${classList})`, "g"),
-      }))
-      .reverse();
   }
 
   processCssObj(root: CSS) {
@@ -228,13 +213,6 @@ class Stylesheet {
   transformSelector(selector: string) {
     // Map class list compositions to single identifiers
     let transformedSelector = selector;
-    for (const { identifier, regex } of this.composedClassLists) {
-      transformedSelector = transformedSelector.replace(regex, () => {
-        markCompositionUsed(identifier);
-
-        return identifier;
-      });
-    }
 
     if (this.localClassNamesMap.has(transformedSelector)) {
       return this.transformClassname(transformedSelector);
@@ -578,16 +556,11 @@ function renderCss(v: any, indent: string = "") {
 
 interface TransformCSSParams {
   localClassNames: Array<string>;
-  composedClassLists: Array<Composition>;
   cssObjs: Array<CSS>;
 }
 
-export function transformCss({
-  localClassNames,
-  cssObjs,
-  composedClassLists,
-}: TransformCSSParams) {
-  const stylesheet = new Stylesheet(localClassNames, composedClassLists);
+export function transformCss({ localClassNames, cssObjs }: TransformCSSParams) {
+  const stylesheet = new Stylesheet(localClassNames);
 
   for (const root of cssObjs) {
     stylesheet.processCssObj(root);

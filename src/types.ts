@@ -133,11 +133,6 @@ export type FileScope = {
   filePath: string;
 };
 
-export interface Composition {
-  identifier: string;
-  classList: string;
-}
-
 export type NullableTokens = {
   [key: string]: string | NullableTokens | null;
 };

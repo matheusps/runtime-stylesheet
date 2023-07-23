@@ -20,7 +20,6 @@ describe("transformCss", () => {
   it("should escape class names", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["test_1/2_className", "[test_with_brackets]"],
         cssObjs: [
           {
@@ -70,7 +69,6 @@ describe("transformCss", () => {
   it("should handle media queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -110,7 +108,6 @@ describe("transformCss", () => {
   it("should handle media queries inside selectors", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -168,7 +165,6 @@ describe("transformCss", () => {
   it("should merge media queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -244,7 +240,6 @@ describe("transformCss", () => {
   it("should not merge media queries if not safe to do so", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -354,7 +349,6 @@ describe("transformCss", () => {
   it("should not merge nested media queries if not safe to do so", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -484,7 +478,6 @@ describe("transformCss", () => {
   it("should merge nested media queries if safe to do so", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -553,7 +546,6 @@ describe("transformCss", () => {
   it("should handle simple pseudos", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -581,7 +573,6 @@ describe("transformCss", () => {
   it("should handle property fallbacks", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -612,7 +603,6 @@ describe("transformCss", () => {
   it("should dashify properties but leave custom properties", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -640,7 +630,6 @@ describe("transformCss", () => {
   it("should handle blank content", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -662,7 +651,6 @@ describe("transformCss", () => {
   it("should add quotes to custom content values", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -690,7 +678,6 @@ describe("transformCss", () => {
   it("should handle content with fallbacks", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -713,7 +700,6 @@ describe("transformCss", () => {
   it("should not add quotes to content that already has quotes", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -741,7 +727,6 @@ describe("transformCss", () => {
   it("should not add quotes to meaningful content values (examples from mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/content)", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -853,7 +838,6 @@ describe("transformCss", () => {
   it("should handle simple pseudos within conditionals", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -887,7 +871,6 @@ describe("transformCss", () => {
   it("should honour input order for simple pseudos", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -933,7 +916,6 @@ describe("transformCss", () => {
   it("should handle complex selectors", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass", "parentClass"],
         cssObjs: [
           {
@@ -975,7 +957,6 @@ describe("transformCss", () => {
   it("should handle getter selectors", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass", "parentClass"],
         cssObjs: [
           {
@@ -1019,7 +1000,6 @@ describe("transformCss", () => {
   it("should handle complex selectors within media queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1055,7 +1035,6 @@ describe("transformCss", () => {
   it("should handle @supports queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1087,7 +1066,6 @@ describe("transformCss", () => {
   it("should handle @container queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1121,7 +1099,6 @@ describe("transformCss", () => {
   it("should handle @layer declarations", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1143,7 +1120,6 @@ describe("transformCss", () => {
   it("should hoist @layer declarations", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1205,7 +1181,6 @@ describe("transformCss", () => {
   it("should handle conditional declaration of layers", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["link", "pink"],
         cssObjs: [
           { type: "layer", name: "lib" },
@@ -1292,7 +1267,6 @@ describe("transformCss", () => {
   it("should merge styles from the same layer", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["link", "pink"],
         cssObjs: [
           {
@@ -1361,7 +1335,6 @@ describe("transformCss", () => {
   it("should bailout merging for nested layers", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass", "otherTestClass"],
         cssObjs: [
           {
@@ -1435,7 +1408,6 @@ describe("transformCss", () => {
   it("should handle @layer rules with complex selectors and simple pseudos", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1474,7 +1446,6 @@ describe("transformCss", () => {
   it("should handle nested @supports, @media and @container queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1556,7 +1527,6 @@ describe("transformCss", () => {
   it("should merge nested @supports, @media and @container queries when safe to do so", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass", "otherClass"],
         cssObjs: [
           {
@@ -1642,7 +1612,6 @@ describe("transformCss", () => {
   it("should not merge nested @supports, @media and @container queries when not safe to do so", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass", "otherClass"],
         cssObjs: [
           {
@@ -1736,7 +1705,6 @@ describe("transformCss", () => {
   it("should handle @supports negation queries", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1768,7 +1736,6 @@ describe("transformCss", () => {
   it("should handle animations", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1808,7 +1775,6 @@ describe("transformCss", () => {
   it("should handle font face", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: [],
         cssObjs: [
           {
@@ -1829,7 +1795,6 @@ describe("transformCss", () => {
   it("should handle multiple font faces of the same family", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: [],
         cssObjs: [
           {
@@ -1863,7 +1828,6 @@ describe("transformCss", () => {
   it("should handle multiple font faces", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: [],
         cssObjs: [
           {
@@ -1897,7 +1861,6 @@ describe("transformCss", () => {
   it("should not create empty rules", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1925,7 +1888,6 @@ describe("transformCss", () => {
   it("should lower all conditionals styles", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -1985,7 +1947,6 @@ describe("transformCss", () => {
   it("should allow valid global styles", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
@@ -2027,7 +1988,6 @@ describe("transformCss", () => {
   it("should not allow simple pseudos on global styles", () => {
     expect(() =>
       transformCss({
-        composedClassLists: [],
         localClassNames: [],
         cssObjs: [
           {
@@ -2051,7 +2011,6 @@ describe("transformCss", () => {
   it("should not allow selectors on global styles", () => {
     expect(() =>
       transformCss({
-        composedClassLists: [],
         localClassNames: [],
         cssObjs: [
           {
@@ -2074,42 +2033,9 @@ describe("transformCss", () => {
     );
   });
 
-  it("should map composed class lists into single identifiers", () => {
-    const composedStyle1 = "composedStyle1 pd-sm dblock border-red";
-    const composedStyle2 = `composedStyle2 background-red ${composedStyle1}`;
-
-    expect(
-      transformCss({
-        composedClassLists: [
-          { identifier: "composedStyle1", classList: composedStyle1 },
-          {
-            identifier: "composedStyle2",
-            classList: composedStyle2,
-          },
-        ],
-
-        localClassNames: ["composedStyle1", "composedStyle2"],
-        cssObjs: [
-          {
-            type: "local",
-            selector: `${composedStyle1} button, body > ${composedStyle2}`,
-            rule: {
-              display: "block",
-            },
-          },
-        ],
-      }).join("\n")
-    ).toMatchInlineSnapshot(`
-      .composedStyle1 button, body > .composedStyle2 {
-        display: block;
-      }
-    `);
-  });
-
   it("should handle the pseudo-elements with params", () => {
     expect(
       transformCss({
-        composedClassLists: [],
         localClassNames: ["testClass"],
         cssObjs: [
           {
