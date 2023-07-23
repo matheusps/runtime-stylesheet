@@ -1,5 +1,5 @@
 import cssesc from "cssesc";
-import AhoCorasick from "ahocorasick";
+import { AhoCorasick } from "./ahocorasick";
 
 import type {
   CSS,
@@ -241,7 +241,7 @@ class Stylesheet {
         value !== 0 &&
         !UNITLESS[key as keyof CSSPropertiesWithVars]
       ) {
-        cssRule[key] = `${value}px`;
+        (cssRule as any)[key] = `${value}px`;
       }
     });
 
