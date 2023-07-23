@@ -12,7 +12,6 @@
     "moduleResolution": "node",
     "jsx": "react-jsx",
     "allowJs": true,
-    "incremental": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "isolatedModules": true,
