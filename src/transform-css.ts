@@ -20,56 +20,6 @@ import { simplePseudos, simplePseudoLookup } from "./simple-pseudos";
 
 const DECLARATION = "__DECLARATION";
 
-const UNITLESS: Record<string, boolean> = {
-  animationIterationCount: true,
-  borderImage: true,
-  borderImageOutset: true,
-  borderImageSlice: true,
-  borderImageWidth: true,
-  boxFlex: true,
-  boxFlexGroup: true,
-  columnCount: true,
-  columns: true,
-  flex: true,
-  flexGrow: true,
-  flexShrink: true,
-  fontWeight: true,
-  gridArea: true,
-  gridColumn: true,
-  gridColumnEnd: true,
-  gridColumnStart: true,
-  gridRow: true,
-  gridRowEnd: true,
-  gridRowStart: true,
-  initialLetter: true,
-  lineClamp: true,
-  lineHeight: true,
-  maxLines: true,
-  opacity: true,
-  order: true,
-  orphans: true,
-  scale: true,
-  tabSize: true,
-  WebkitLineClamp: true,
-  widows: true,
-  zIndex: true,
-  zoom: true,
-
-  // svg properties
-  fillOpacity: true,
-  floodOpacity: true,
-  maskBorder: true,
-  maskBorderOutset: true,
-  maskBorderSlice: true,
-  maskBorderWidth: true,
-  shapeImageThreshold: true,
-  stopOpacity: true,
-  strokeDashoffset: true,
-  strokeMiterlimit: true,
-  strokeOpacity: true,
-  strokeWidth: true,
-};
-
 function dashify(str: string) {
   return str
     .replace(/([A-Z])/g, "-$1")
@@ -231,21 +181,7 @@ class Stylesheet {
   }
 
   transformProperties(cssRule: CSSPropertiesWithVars) {
-    return this.transformContent(this.pixelifyProperties(cssRule));
-  }
-
-  pixelifyProperties(cssRule: CSSPropertiesWithVars) {
-    forEach(cssRule, (value, key) => {
-      if (
-        typeof value === "number" &&
-        value !== 0 &&
-        !UNITLESS[key as keyof CSSPropertiesWithVars]
-      ) {
-        (cssRule as any)[key] = `${value}px`;
-      }
-    });
-
-    return cssRule;
+    return this.transformContent(cssRule);
   }
 
   transformVars({ vars, ...rest }: CSSPropertiesWithVars) {

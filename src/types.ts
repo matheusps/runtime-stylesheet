@@ -138,10 +138,6 @@ export interface Composition {
   classList: string;
 }
 
-export interface Adapter {
-  markCompositionUsed: (identifier: string) => void;
-}
-
 export type NullableTokens = {
   [key: string]: string | NullableTokens | null;
 };

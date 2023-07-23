@@ -1,4 +1,6 @@
-import type { Adapter } from "./types";
+export interface Adapter {
+  markCompositionUsed: (identifier: string) => void;
+}
 
 export const mockAdapter: Adapter = {
   markCompositionUsed: () => {},

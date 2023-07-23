@@ -1799,7 +1799,7 @@ describe("transformCss", () => {
         to {
           content: "foo";
           opacity: 1;
-          padding: 10px;
+          padding: 10;
         }
       }
     `);
