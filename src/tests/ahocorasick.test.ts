@@ -1,4 +1,4 @@
-import { AhoCorasick } from "./ahocorasick";
+import { AhoCorasick } from "../ahocorasick";
 
 const _s = AhoCorasick.prototype.search;
 AhoCorasick.prototype.search = function (string) {

@@ -1,4 +1,4 @@
-import { isEqual, dudupeAndJoinClassList } from "./utils";
+import { isEqual, dudupeAndJoinClassList } from "../utils";
 
 describe("isEqual", () => {
   it.each([

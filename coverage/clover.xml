@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1690070420937" clover="3.2.0">
-  <project timestamp="1690070420937" name="All files">
+<coverage generated="1690070882739" clover="3.2.0">
+  <project timestamp="1690070882739" name="All files">
     <metrics statements="1200" coveredstatements="1173" conditionals="226" coveredconditionals="213" methods="49" coveredmethods="48" elements="1475" coveredelements="1434" complexity="0" loc="1200" ncloc="1200" packages="1" files="6" classes="6"/>
     <file name="adapter.ts" path="/Users/matheus/wpc/css-runtime-parser/src/adapter.ts">
       <metrics statements="21" coveredstatements="19" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>

@@ -2,7 +2,7 @@
 // import { createVar } from "./vars";
 // import { transformCss } from "./transformCss";
 // import { style } from "./style";
-import { transformCss } from "./transform-css";
+import { transformCss } from "../transform-css";
 
 // setFileScope("test");
 
