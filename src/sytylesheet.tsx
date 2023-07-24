@@ -14,8 +14,8 @@ export function Stylesheet(props: StylesheetProps) {
   const { css: styleRule, fixClasses = true } = props;
 
   const styleString = fixClasses
-    ? fixStyleDots(css({ styleRule }))
-    : css({ styleRule });
+    ? fixStyleDots(css(styleRule))
+    : css(styleRule);
 
   return <style>{styleString}</style>;
 }
